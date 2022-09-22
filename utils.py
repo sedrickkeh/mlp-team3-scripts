@@ -19,7 +19,6 @@ def get_dates(date_list, verbose=True):
         # start of label buffer (validation)
         start_of_label_buffer_v = curr_date - pd.DateOffset(months=label_buffer)
 
-        print(start_of_label_buffer_v)
         # start of validation set
         start_of_validation_set = start_of_label_buffer_v - pd.DateOffset(months=validation_size)
 
@@ -47,3 +46,14 @@ def get_dates(date_list, verbose=True):
         return_dates.append((str(start_of_train_set)[:10], str(start_of_label_buffer_t)[:10], str(start_of_validation_set)[:10], str(start_of_label_buffer_v)[:10]))
 
     return return_dates  
+
+
+def get_splits(df, date_col='date_posted'):
+    df_sorted = df.sort_values(by=[date_col])
+    date_splits = get_dates(dates, verbose=False)
+    dfs = []
+    for t in date_splits:
+        train = df_sorted[(df_sorted[date_col]>=t[0])&(df_sorted[date_col]<t[1])].reset_index(drop=True)
+        val = df_sorted[(df_sorted[date_col]>=t[2])&(df_sorted[date_col]<t[3])].reset_index(drop=True)
+        dfs.append((train, val))
+    return dfs
