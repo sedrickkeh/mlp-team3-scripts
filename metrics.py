@@ -31,6 +31,7 @@ def plot_prk_curve(logits, labels, interval=0.1, save_name='prk_curve.png', plot
     plt.plot(fracs, precisions, label="precision")
     plt.plot(fracs, recalls, label="recall", color='red')
     plt.xticks(fracs)
+    plt.xlabel("Percent of population")
     plt.title(plot_title)
     plt.legend()
     plt.savefig(save_name)
