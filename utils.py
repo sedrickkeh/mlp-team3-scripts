@@ -8,7 +8,7 @@ def get_dates(date_list, verbose=True):
     label_buffer = 4        # months
     train_size = 12         # months
     validation_size = 1     # months
-    train_valid_gap = 3     # months
+    train_valid_gap = 1     # months
 
     date_format = '%Y-%m-%d'
     curr_date = datetime.strptime(dates_sorted[-1], date_format)
