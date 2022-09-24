@@ -1,5 +1,6 @@
 from datetime import datetime
 from bisect import bisect_left
+import pandas as pd
 
 def get_dates(date_list, verbose=True):
     dates_sorted = sorted(date_list)
@@ -50,6 +51,7 @@ def get_dates(date_list, verbose=True):
 
 def get_splits(df, date_col='date_posted'):
     df_sorted = df.sort_values(by=[date_col])
+    dates = df.loc[:,date_col]
     date_splits = get_dates(dates, verbose=False)
     dfs = []
     for t in date_splits:
