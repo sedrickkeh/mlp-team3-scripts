@@ -11,7 +11,8 @@ def get_dates(date_list, verbose=True):
     train_valid_gap = 1     # months
 
     date_format = '%Y-%m-%d'
-    curr_date = datetime.strptime(dates_sorted[-1], date_format)
+    # curr_date = datetime.strptime(dates_sorted[-1], date_format)
+    curr_date = datetime.strptime('2014-04-01', date_format)
     start_date = datetime.strptime(dates_sorted[0], date_format)
     fold_idx = 0
     return_dates = []
